@@ -1,11 +1,6 @@
-from openalea.lpy import ParameterSet
+
 from math import sqrt, pi
 
-try:
-  demand_only = demand_only
-except NameError:
-  demand_only=False 
-  
 try:
   carbon_seed_stock = carbon_seed_stock
 except NameError:
@@ -26,19 +21,16 @@ module bud: scale=1
 
 Axiom: collar(0)apex(carbon_seed_stock,0)
 
-derivation length: 10
+derivation length: 50
 production:
 apex(carbon, carbon_demand):
   new_carbon_demand = (1 + growth_respiration) * (internode_lineic_mass * potential_internode_rate + leaf_specific_mass * potential_leaf_rate)
-  if demand_only:
-    produce apex(carbon, new_carbon_demand)
-  else:
-    satisfaction = min(1,float(carbon) / new_carbon_demand)
-    ilength = potential_internode_rate * satisfaction
-    ibm = ilength * internode_lineic_mass
-    larea = potential_leaf_rate * satisfaction
-    lbm = leaf_specific_mass * larea
-    produce internode(0,0,ilength,ibm)[bud][leaf(0,0,larea,lbm)]apex(carbon - new_carbon_demand*satisfaction, new_carbon_demand)
+  satisfaction = min(1,float(carbon) / new_carbon_demand)
+  ilength = potential_internode_rate * satisfaction
+  ibm = ilength * internode_lineic_mass
+  larea = potential_leaf_rate * satisfaction
+  lbm = leaf_specific_mass * larea
+  produce internode(0,0,ilength,ibm)[bud][leaf(0,0,larea,lbm)]apex(carbon - new_carbon_demand*satisfaction, new_carbon_demand)
 
 interpretation:
 internode(carbon, carbon_demand, length, biomass) --> /(137.5)F(length)

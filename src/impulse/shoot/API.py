@@ -4,7 +4,6 @@ import generic_functions
 
 
 def main(g, mtg_roots):
-    CO2 = 400
     plant_carbon_acquisition = 0
     plant_respiration = 0
     plant_area = 0
@@ -19,7 +18,7 @@ def main(g, mtg_roots):
         vid_properties = g.get_vertex_property(vid)
 
         # Organ photosynthesis
-        plant_carbon_acquisition += generic_functions.carbon_acquisition(vid_properties['PAR'], CO2, vid_properties['nitrogen'], vid_properties['area'], vid_properties['temperature'])
+        plant_carbon_acquisition += generic_functions.carbon_acquisition(vid_properties['PAR'], vid_properties['nitrogen'], vid_properties['area'])
 
         # Organ respiration
         plant_respiration += generic_functions.respiration(vid_properties['area'], vid_properties['temperature'])

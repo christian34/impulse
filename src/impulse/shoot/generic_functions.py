@@ -2,7 +2,7 @@
 import math
 
 
-def carbon_acquisition(PAR, CO2, nitrogen, area, temperature):
+def carbon_acquisition(PAR, nitrogen, area):
     """
     A model of carbon acquisition: Farquhar, RUE, hyperbolic models...
     """

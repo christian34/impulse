@@ -49,10 +49,5 @@ def nitrogen_allocation(organ_transpiration, plant_transpiration, plant_nitrogen
     return plant_nitrogen_influx * (organ_transpiration / plant_transpiration)
 
 
-def hydraulic_model(organ_transpiration, plant_transpiration, root_water_influx):
-    """Water flux"""
-    return root_water_influx * (organ_transpiration / plant_transpiration)
-
-
 def nitrogen_influx_from_roots(conc_nitrates_roots, plant_transpiration):
     conc_nitrates_roots * (plant_transpiration / (plant_transpiration + 1))

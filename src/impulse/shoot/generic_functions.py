@@ -9,7 +9,7 @@ def carbon_acquisition(PAR, nitrogen, area):
     SLN = nitrogen / area
     Pm = (2 / (1 + math.exp(-1.2 * (SLN - 1))) - 1) * 25
     calculated_carbon_acquisition = (1/1.5) * (0.045 * PAR + Pm - ((0.045 * PAR) ** 2 - 0.0135 * PAR * Pm) ** 0.5)
-    return calculated_carbon_acquisition
+    return calculated_carbon_acquisition * area
 
 
 def respiration(area, temperature):
